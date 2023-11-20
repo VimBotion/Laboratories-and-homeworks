@@ -13,7 +13,7 @@
 
 #include <iostream>
 
-double recursion(double num);
+double factorial(double num);
 
 int main()
 {
@@ -24,17 +24,17 @@ int main()
         std::cout << "Ingrese el numero: \n";
         std::cin >> num;
     } while (num < 1 || num > 100);
-    resultado = recursion(num);
+    resultado = factorial(num);
     std::cout << "El factorial es: " << resultado << "\n";
 
 }
 
-double recursion(double num)
+double factorial(double num)
 {
     if (num == 1)
     {
         return 1;
     }
 
-    return num * recursion(num - 1);
+    return num * factorial(num - 1);
 }
