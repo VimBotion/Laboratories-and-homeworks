@@ -1,1 +1,1 @@
-# Laboratories from my freshmen class at Universidad del Azuay
+# Laboratories for my freshmen class at Universidad del Azuay
