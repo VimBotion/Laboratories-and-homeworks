@@ -13,7 +13,7 @@
 #include <iostream>
 #include <iomanip>
 
-int suma(int num1, int num2, int num3);
+float suma(float num1, float num2, float num3);
 float division(float num1, float num2, float num3);
 
 int main()
@@ -30,7 +30,7 @@ int main()
     std::cout << "La media es: " << std::setprecision(4) << resultado << "\n";
 }
 
-int suma(int num1, int num2, int num3)
+float suma(float num1, float num2, float num3)
 {
     return num1 + num2 + num3;
 }
