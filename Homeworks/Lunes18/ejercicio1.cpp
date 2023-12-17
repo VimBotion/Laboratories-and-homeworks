@@ -1,4 +1,4 @@
-// Ejercicio 31 de la pagina 170
+// Ejercicio en clase
 #include <iostream>
 #include <string>
 #include <iomanip>
