@@ -1,12 +1,12 @@
-// Ejercicio en clase
+// Ejercicio 31 de la pagina 170
 #include <iostream>
 #include <string>
 #include <iomanip>
-#include <algorithm>
 
-const int NUM_ALUMNOS = 10;
+const int NUM_ALUMNOS = 50;
 const int NUM_MATERIAS = 6;
 
+void sort(std::string *nombres, int cantidadAlumnos, double notas[][NUM_MATERIAS]);
 void ingresarAlumnos(std::string *nombres, int cantidadAlumnos);
 void ingresarNotas(double notas[][NUM_MATERIAS], std::string *nombres, int cantidadAlumnos);
 void mostrarTabla(double notas[][NUM_MATERIAS], std::string *nombres, int cantidadAlumnos);
@@ -25,8 +25,11 @@ int main(){
     ingresarAlumnos(nombres, cantidadAlumnos);
 
     double notas[cantidadAlumnos][NUM_MATERIAS];
-    std::sort(nombres, nombres + cantidadAlumnos);
+
     ingresarNotas(notas, nombres, cantidadAlumnos);
+
+    sort(nombres, cantidadAlumnos, notas);
+    
     mostrarTabla(notas, nombres, cantidadAlumnos);
 }
 
@@ -66,5 +69,19 @@ void mostrarTabla(double notas[][NUM_MATERIAS], std::string *nombres, int cantid
         double media = sumaNotas / NUM_MATERIAS;
         std::cout << std::fixed << std::setprecision(2) << std::setw(10) << media << '\n';
 
+    }
+}
+
+void sort(std::string *nombres, int cantidadAlumnos, double notas[][NUM_MATERIAS]){
+    for (int i = 0; i < cantidadAlumnos - 1; i++) {
+        for (int j = 0; j < cantidadAlumnos - i - 1; j++) {
+            if (nombres[j] > nombres[j + 1]) {
+                std::swap(nombres[j], nombres[j + 1]);
+
+                for (int k = 0; k < NUM_MATERIAS; k++) {
+                    std::swap(notas[j][k], notas[j + 1][k]);
+                }
+            }
+        }
     }
 }
