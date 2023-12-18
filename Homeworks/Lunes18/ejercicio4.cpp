@@ -2,8 +2,8 @@
 #include <iostream>
 
 void ingresarNumeros(int **matriz, int tamano);
-void rotarNoventa(int **matriz, int tamano);
-void mostrarMatriz(int **matriz, int tamano);
+void rotarMatrizNoventa(int **matriz, int tamano);
+void dibujarArreglo(int **matriz, int tamano);
 
 int main(){
     int tamano;
@@ -17,9 +17,9 @@ int main(){
 
     ingresarNumeros(matriz, tamano);
     std::cout << '\n';
-    mostrarMatriz(matriz, tamano);
+    dibujarArreglo(matriz, tamano);
     std::cout << '\n';
-    rotarNoventa(matriz, tamano);
+    rotarMatrizNoventa(matriz, tamano);
 
     for(int i = 0; i < tamano; i++){
         delete[] matriz[i];
@@ -31,12 +31,12 @@ int main(){
 void ingresarNumeros(int **matriz, int tamano){
     for (int i = 0; i < tamano; i++){
         for (int j = 0; j < tamano; j++){
-            std::cout << "Ingrese un numero en la fila # " << i + 1 << " y la columna # " << j + 1 << '\n';
+            std::cout << "Ingrese un numero en la fila " << i + 1 << " y la columna " << j + 1 << '\n';
             std::cin >> matriz[i][j];
         }
     }
 }
-void mostrarMatriz(int **matriz, int tamano){
+void dibujarArreglo(int **matriz, int tamano){
     for(int i = 0; i < tamano; i++){
         for (int j = 0; j < tamano; j++){
             std::cout << matriz[i][j] << '\t';
@@ -45,21 +45,19 @@ void mostrarMatriz(int **matriz, int tamano){
     }
 }
 
-void rotarNoventa(int **matriz, int tamano){
-    // Crear una matriz temporal para almacenar la rotación
+void rotarMatrizNoventa(int **matriz, int tamano){
     int **matrizRotada = new int*[tamano];
     for (int i = 0; i < tamano; i++){
         matrizRotada[i] = new int[tamano];
     }
 
-    // Rotar la matriz
     for (int i = 0; i < tamano; i++){
         for (int j = 0; j < tamano; j++){
             matrizRotada[j][tamano - 1 - i] = matriz[i][j];
         }
     }
 
-    mostrarMatriz(matrizRotada, tamano);
+    dibujarArreglo(matrizRotada, tamano);
 
     for(int i = 0; i < tamano; i++){
         delete[] matrizRotada[i];
