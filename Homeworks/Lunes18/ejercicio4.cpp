@@ -72,7 +72,7 @@ void literalC(int **matriz, int filas, int columnas){
 
     for (int i = 0; i < filas; i++){
         for (int j = 0; j < columnas; j++){
-            matrizLiteralC[i][j] = matriz[i][j];
+            matrizLiteralC[j][columnas - i - 1] = matriz[i][j];
         }
     }
 

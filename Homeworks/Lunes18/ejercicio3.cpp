@@ -18,7 +18,7 @@ int main(){
     ingresarNumeros(matriz, tamano);
     std::cout << '\n';
     dibujarArreglo(matriz, tamano);
-    std::cout << '\n';
+    std::cout << 'La matriz rotada noventa grados\n';
     rotarMatrizNoventa(matriz, tamano);
 
     for(int i = 0; i < tamano; i++){
