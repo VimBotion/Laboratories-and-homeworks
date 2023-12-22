@@ -24,8 +24,8 @@ struct Articulo {
     int codigoProveedor;
 };
 
-const int MAX_CIUDADES = 10;
-const int MAX_PROVEEDORES = 10;
+const int MAX_CIUDADES = 20;
+const int MAX_PROVEEDORES = 20;
 const int MAX_ARTICULOS = 50;
 
 void ingresarCiudad(Ciudad ciudades[MAX_CIUDADES], int &ciudadesCount);
@@ -100,15 +100,12 @@ int main() {
     return 0;
 }
 
-// Implementación de las funciones
-
 void ingresarCiudad(Ciudad ciudades[MAX_CIUDADES], int &ciudadesCount) {
     if (ciudadesCount < MAX_CIUDADES) {
         std::string nombreCiudad;
         std::cout << "Ingrese el nombre de la ciudad: \n";
         std::cin >> nombreCiudad;
 
-        // Verificar si la ciudad ya existe
         bool ciudadExistente = false;
         for (int i = 0; i < ciudadesCount; ++i) {
             if (ciudades[i].nombre == nombreCiudad) {
@@ -135,7 +132,6 @@ void ingresarProveedores(Proveedor proveedores[MAX_PROVEEDORES], int &proveedore
         std::cout << "Ingrese el nombre del proveedor:\n";
         std::cin >> nombreProveedor;
 
-        // Verificar si el proveedor ya existe
         bool proveedorExistente = false;
         for (int i = 0; i < proveedoresCount; ++i) {
             if (proveedores[i].nombre == nombreProveedor) {
@@ -147,7 +143,6 @@ void ingresarProveedores(Proveedor proveedores[MAX_PROVEEDORES], int &proveedore
         if (!proveedorExistente) {
             proveedores[proveedoresCount].nombre = nombreProveedor;
             proveedores[proveedoresCount].codigoProveedor = proveedoresCount;
-            // Seleccionar ciudad para el proveedor
             std::cout << "Ciudades Disponibles:\n";
             for (int i = 0; i < ciudadesCount; ++i) {
                 std::cout << i << ". " << ciudades[i].nombre << '\n';
@@ -169,7 +164,6 @@ void ingresarArticulo(Articulo articulos[MAX_ARTICULOS], int &articulosCount, Pr
         std::cout << "Ingrese el nombre del articulo: \n";
         std::cin >> nombreArticulo;
 
-        // Verificar si el articulo ya existe
         bool articuloExistente = false;
         for (int i = 0; i < articulosCount; ++i) {
             if (articulos[i].nombre == nombreArticulo) {
@@ -180,16 +174,12 @@ void ingresarArticulo(Articulo articulos[MAX_ARTICULOS], int &articulosCount, Pr
 
         if (!articuloExistente) {
             articulos[articulosCount].nombre = nombreArticulo;
-
-            // Seleccionar proveedor para el articulo
             std::cout << "Proveedores Disponibles:\n";
             for (int i = 0; i < proveedoresCount; ++i) {
                 std::cout << i << ". " << proveedores[i].nombre << '\n';
             }
             std::cout << "Seleccione el codigo del proveedor del articulo:\n";
             std::cin >> articulos[articulosCount].codigoProveedor;
-
-            // Ingresar información adicional del articulo
             do {
                 std::cout << "Ingrese el stock minimo del articulo: \n";
                 std::cin >> articulos[articulosCount].stockMinimo;
@@ -215,7 +205,6 @@ void registrarConsumo(Articulo articulos[MAX_ARTICULOS], int articulosCount) {
     std::cout << "Ingrese el codigo del articulo: \n";
     std::cin >> codigoArticulo;
 
-    // Buscar el articulo por su código
     int indiceArticulo = -1;
     for (int i = 0; i < articulosCount; ++i) {
         if (articulos[i].codigoArticulo == codigoArticulo) {
@@ -228,7 +217,6 @@ void registrarConsumo(Articulo articulos[MAX_ARTICULOS], int articulosCount) {
         std::cout << "Ingrese la cantidad consumida: \n";
         std::cin >> cantidadConsumida;
 
-        // Validar que la cantidad consumida no supere el stock actual
         if (cantidadConsumida <= articulos[indiceArticulo].stockActual) {
             articulos[indiceArticulo].stockActual -= cantidadConsumida;
             std::cout << "Consumo registrado correctamente.\n";
@@ -245,7 +233,6 @@ void consultarArticulo(Articulo articulos[MAX_ARTICULOS], int articulosCount) {
     std::cout << "Ingrese el codigo del articulo: \n";
     std::cin >> codigoArticulo;
 
-    // Buscar el articulo por su código
     int indiceArticulo = -1;
     for (int i = 0; i < articulosCount; ++i) {
         if (articulos[i].codigoArticulo == codigoArticulo) {
@@ -255,7 +242,6 @@ void consultarArticulo(Articulo articulos[MAX_ARTICULOS], int articulosCount) {
     }
 
     if (indiceArticulo != -1) {
-        // Mostrar información del articulo
         std::cout << std::setw(20) << "NOMBRE: " << articulos[indiceArticulo].nombre << '\n';
         std::cout << std::setw(20) << "STOCK MINIMO: " << articulos[indiceArticulo].stockMinimo << '\n';
         std::cout << std::setw(20) << "STOCK ACTUAL: " << articulos[indiceArticulo].stockActual << '\n';
@@ -277,7 +263,6 @@ void listarArticulos(Articulo articulos[MAX_ARTICULOS], int articulosCount) {
         std::cout << std::setw(20) << "CODIGO DEL ARTICULO: " << articulos[i].codigoArticulo << '\n';
         std::cout << std::setw(20) << "CODIGO DEL PROVEEDOR: " << articulos[i].codigoProveedor << '\n';
 
-        // Mostrar mensaje de "Requiere compra" si el stock actual es menor al stock mínimo
         if (articulos[i].stockActual < articulos[i].stockMinimo) {
             std::cout << std::setw(20) << "Requiere compra\n";
         }
