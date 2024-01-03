@@ -1,6 +1,9 @@
+// AUTORES: Apolo Juan y Campoverde Esteban
+
 #include <iostream>
 #include <string>
 
+// Juan y Esteban
 struct Peliculas {
     std::string titulo;
     int anio;
@@ -9,14 +12,15 @@ struct Peliculas {
     std::string calificacion;
 };
 
-const int MAX_PELICULAS = 3;
+const int MAX_PELICULAS = 50;
 
 void agregarPelicula(Peliculas pelicula[MAX_PELICULAS], int& peliculaCount);
 void mostrarPeliculas(Peliculas pelicula[MAX_PELICULAS], int peliculaCount);
-void ordenarPeliculas();
+void ordenarPeliculas(Peliculas peliculas[MAX_PELICULAS], int peliculaCount);
 void buscarPelicula(Peliculas pelicula[MAX_PELICULAS], int peliculaCount);
 
 int main(){
+    // Esteban
     int opcion;
     int peliculaCount = 0;
 
@@ -39,13 +43,13 @@ int main(){
             mostrarPeliculas(pelicula, peliculaCount);
             break;
         case 3:
-            ordenarPeliculas();
+            ordenarPeliculas(pelicula, peliculaCount);
             break;
         case 4:
             buscarPelicula(pelicula, peliculaCount);
             break;
         case 5:
-            "Gracias por usar!";
+            std::cout << "Gracias por usar!\n";
             break;
     }
 
@@ -53,6 +57,7 @@ int main(){
 }
 
 void agregarPelicula(Peliculas pelicula[MAX_PELICULAS], int &peliculaCount){
+    // Juan
     if (peliculaCount < MAX_PELICULAS){
         std::cin.ignore();
         std::cout << "Ingrese el Titulo de la pelicula:\n";
@@ -71,7 +76,6 @@ void agregarPelicula(Peliculas pelicula[MAX_PELICULAS], int &peliculaCount){
             std::getline(std::cin, calificacion);
         } while (calificacion != "G" && calificacion != "PG" && calificacion != "PG-13" && calificacion != "R" && calificacion != "NC-17");
 
-        // Assign the entered calificacion to the corresponding field
         pelicula[peliculaCount].calificacion = calificacion;
 
         peliculaCount++;
@@ -82,6 +86,7 @@ void agregarPelicula(Peliculas pelicula[MAX_PELICULAS], int &peliculaCount){
 }
 
 void mostrarPeliculas(Peliculas pelicula[MAX_PELICULAS], int peliculaCount){
+    // Esteban
     for (int i = 0; i < peliculaCount; i++){
         std::cout << "Pelicula # " << i + 1 << '\n';
         std::cout << "Titulo: " << pelicula[i].titulo << '\n';
@@ -89,27 +94,45 @@ void mostrarPeliculas(Peliculas pelicula[MAX_PELICULAS], int peliculaCount){
         std::cout << "Genero: " << pelicula[i].genero << '\n';
         std::cout << "Duracion: " << pelicula[i].duracion << '\n';
         std::cout << "Calificacion: " << pelicula[i].calificacion << '\n';
+        std::cout << '\n';
     }
 }
 
 
-void ordenarPeliculas(){
+void ordenarPeliculas(Peliculas peliculas[MAX_PELICULAS], int peliculaCount){
+    // Juan
+    for (int i = 0; i < peliculaCount - 1; i++){
+        for (int j = 0; j < peliculaCount - i - 1; j++){
+            if (peliculas[j].anio > peliculas[j + 1].anio){
+                Peliculas temp = peliculas[j];
+                peliculas[j] = peliculas[j + 1];
+                peliculas[j + 1] = temp;
+            }
+        }
+    }
 
+    for (int i = 0; i < peliculaCount; i++){
+        std::cout << "Pelicula: " << peliculas[i].titulo << '\n';
+        std::cout << "Año de lanzamiento: " << peliculas[i].anio << '\n';
+        std::cout << '\n';
+    }
 }
 
 void buscarPelicula(Peliculas pelicula[MAX_PELICULAS], int peliculaCount){
+    // Esteban y Juan
     std::cin.ignore();
     std::string generoBuscar;
     std::cout << "Generos disponibles: \n";
     for (int i = 0; i < peliculaCount; i++){
-        std::cout << pelicula[i].genero << '\n';
+        std::cout << "- " << pelicula[i].genero << '\n';
     }
     std::cout << "Que genero desea buscar: " << '\n';
     getline(std::cin, generoBuscar);
     for(int i = 0; i < peliculaCount; i++){
         if(generoBuscar == pelicula[i].genero){
-            std::cout << "Peliculas con genero " << pelicula[i].genero << "\n";
+            std::cout << "Peliculas con genero: " << pelicula[i].genero << "!\n";
             std::cout << "Titulo: " << pelicula[i].titulo << '\n';        
+            break;
         }
     }
 }
