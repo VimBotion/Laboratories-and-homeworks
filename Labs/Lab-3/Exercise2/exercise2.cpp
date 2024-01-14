@@ -1,15 +1,3 @@
-/*
-C++ Laboratorio 3 Ejercicio 2
-Este programa calcula el factorial de un numero 
-ENTRADAS: Numero 
-SALIDAS: El factorial del numero 
-PROCESOS: 1. Pedir el numero
-          2. Utilizar una funcion recursiva con caso base n = 1, que disminuya el valor de n (num)
-          3. Mostrar el resultado
-
-AUTOR: Esteban Campoverde y Maria Fernanda Bravo
-*/
-
 #include <iostream>
 
 int factorial(int num);
