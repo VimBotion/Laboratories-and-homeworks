@@ -1,66 +1,66 @@
-// Ejercicio 35 de la pagina 170
 #include <iostream>
 
-void ingresarNumeros(int **matriz, int tamano);
-void rotarMatrizNoventa(int **matriz, int tamano);
-void dibujarArreglo(int **matriz, int tamano);
+void enterNumbers(int **matrix, int size);
+void rotateMatrixNinety(int **matrix, int size);
+void drawArray(int **matrix, int size);
 
 int main(){
-    int tamano;
-    std::cout << "Ingrese el orden de la matriz: ";
-    std::cin >> tamano;
+    int size;
+    std::cout << "Enter the size of the matrix: ";
+    std::cin >> size;
 
-    int **matriz = new int*[tamano];
-    for (int i = 0; i < tamano; i++){
-        matriz[i] = new int[tamano];
+    int **matrix = new int*[size];
+    for (int i = 0; i < size; i++){
+        matrix[i] = new int[size];
     }
 
-    ingresarNumeros(matriz, tamano);
+    enterNumbers(matrix, size);
     std::cout << '\n';
-    dibujarArreglo(matriz, tamano);
-    std::cout << 'La matriz rotada noventa grados\n';
-    rotarMatrizNoventa(matriz, tamano);
+    drawArray(matrix, size);
+    std::cout << "The matrix rotated ninety degrees:\n";
+    rotateMatrixNinety(matrix, size);
 
-    for(int i = 0; i < tamano; i++){
-        delete[] matriz[i];
+    for(int i = 0; i < size; i++){
+        delete[] matrix[i];
     }
     
-    delete[] matriz;
+    delete[] matrix;
 }
 
-void ingresarNumeros(int **matriz, int tamano){
-    for (int i = 0; i < tamano; i++){
-        for (int j = 0; j < tamano; j++){
-            std::cout << "Ingrese un numero en la fila " << i + 1 << " y la columna " << j + 1 << '\n';
-            std::cin >> matriz[i][j];
+void enterNumbers(int **matrix, int size){
+    for (int i = 0; i < size; i++){
+        for (int j = 0; j < size; j++){
+            std::cout << "Enter a number in row " << i + 1 << " and column " << j + 1 << '\n';
+            std::cin >> matrix[i][j];
         }
     }
 }
-void dibujarArreglo(int **matriz, int tamano){
-    for(int i = 0; i < tamano; i++){
-        for (int j = 0; j < tamano; j++){
-            std::cout << matriz[i][j] << '\t';
+
+void drawArray(int **matrix, int size){
+    for(int i = 0; i < size; i++){
+        for (int j = 0; j < size; j++){
+            std::cout << matrix[i][j] << '\t';
         }
         std::cout << '\n';
     }
 }
 
-void rotarMatrizNoventa(int **matriz, int tamano){
-    int **matrizRotada = new int*[tamano];
-    for (int i = 0; i < tamano; i++){
-        matrizRotada[i] = new int[tamano];
+void rotateMatrixNinety(int **matrix, int size){
+    int **rotatedMatrix = new int*[size];
+    for (int i = 0; i < size; i++){
+        rotatedMatrix[i] = new int[size];
     }
 
-    for (int i = 0; i < tamano; i++){
-        for (int j = 0; j < tamano; j++){
-            matrizRotada[j][tamano - 1 - i] = matriz[i][j];
+    for (int i = 0; i < size; i++){
+        for (int j = 0; j < size; j++){
+            rotatedMatrix[j][size - 1 - i] = matrix[i][j];
         }
     }
 
-    dibujarArreglo(matrizRotada, tamano);
+    drawArray(rotatedMatrix, size);
 
-    for(int i = 0; i < tamano; i++){
-        delete[] matrizRotada[i];
+    for(int i = 0; i < size; i++){
+        delete[] rotatedMatrix[i];
     }
-    delete[] matrizRotada;
+    delete[] rotatedMatrix;
 }

@@ -1,71 +1,70 @@
-// ejercicio 34 de la pagina 170
 #include <iostream>
-#include <stdlib.h>
+#include <cstdlib>
 
-void ingresarNumeros(int** matriz, int rows, int cols);
-void mostrarMatriz(int **matriz, int rows, int cols);
-void virasFilas(int **matriz, int rows, int cols);
-void virarColumnas(int **matriz, int rows, int cols);
+void enterNumbers(int** matrix, int rows, int cols);
+void displayMatrix(int **matrix, int rows, int cols);
+void flipRows(int **matrix, int rows, int cols);
+void flipColumns(int **matrix, int rows, int cols);
 
 int main(){
     int rows, cols;
 
-    std::cout << "Ingrese el numero de filas de la matriz: ";
+    std::cout << "Enter the number of rows in the matrix: ";
     std::cin >> rows;
-    std::cout << "Ingrese el numero de columnas de la matriz: ";
+    std::cout << "Enter the number of columns in the matrix: ";
     std::cin >> cols;
 
-    int **matriz = new int*[rows];
+    int **matrix = new int*[rows];
     for (int i = 0; i < rows; i++){
-        matriz[i] = new int[cols];
+        matrix[i] = new int[cols];
     }
 
-    ingresarNumeros(matriz, rows, cols);
+    enterNumbers(matrix, rows, cols);
     system("CLS");
-    std::cout << "La matriz con las filas viradas es: \n";
-    virasFilas(matriz, rows, cols);
+    std::cout << "The matrix with flipped rows is: \n";
+    flipRows(matrix, rows, cols);
 
-    std::cout << "La matriz con las columnas viradas es: \n";
-    virarColumnas(matriz, rows, cols);
+    std::cout << "The matrix with flipped columns is: \n";
+    flipColumns(matrix, rows, cols);
 
     for (int i = 0; i < rows; i++){
-        delete[] matriz[i];
+        delete[] matrix[i];
     }
 
-    delete[] matriz;
+    delete[] matrix;
 }
 
-void ingresarNumeros(int** matriz, int rows, int cols){
+void enterNumbers(int** matrix, int rows, int cols){
     for (int i = 0; i < rows; i++){
         for (int j = 0; j < cols; j++){
-            std::cout << "Ingrese un numero en la fila # " << i + 1 << " y en la columna # " << j + 1 << ": \n";
-            std::cin >> matriz[i][j];
+            std::cout << "Enter a number in row # " << i + 1 << " and column # " << j + 1 << ": \n";
+            std::cin >> matrix[i][j];
         }
     }
 }
 
-void mostrarMatriz(int **matriz, int rows, int cols){
+void displayMatrix(int **matrix, int rows, int cols){
     for (int i = 0; i < rows; i++){
         for (int j = 0; j < cols; j++){
-            std::cout << matriz[i][j] << '\t';
+            std::cout << matrix[i][j] << '\t';
         }
         std::cout << '\n';
     }
 }
 
-void virasFilas(int **matriz, int rows, int cols){
+void flipRows(int **matrix, int rows, int cols){
     for (int i = rows - 1; i >= 0; i--){
         for (int j = 0; j < cols; j++){
-            std::cout << matriz[i][j] << '\t';
+            std::cout << matrix[i][j] << '\t';
         }
         std::cout << '\n';
     }
 }
 
-void virarColumnas(int **matriz, int rows, int cols){
+void flipColumns(int **matrix, int rows, int cols){
     for (int i = 0; i < rows; i++){
         for (int j = cols - 1; j >= 0; j--){
-            std::cout << matriz[i][j] << '\t';
+            std::cout << matrix[i][j] << '\t';
         }
         std::cout << '\n';
     }

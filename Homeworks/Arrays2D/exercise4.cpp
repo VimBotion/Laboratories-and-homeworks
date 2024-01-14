@@ -1,91 +1,89 @@
-// Ejercicio 36 de la pagina 170
 #include <iostream>
 
-void ingresarNumeros(int **matriz, int filas, int columnas);
-void literalA(int **matriz, int filas, int columnas);
-void literalB(int **matriz, int filas, int columnas);
-void literalC(int **matriz, int filas, int columnas);
+void enterNumbers(int **matrix, int rows, int columns);
+void literalA(int **matrix, int rows, int columns);
+void literalB(int **matrix, int rows, int columns);
+void literalC(int **matrix, int rows, int columns);
 
 int main(){
-    int filas, columnas;
+    int rows, columns;
 
-    std::cout << "Ingrese el numero de filas: \n";
-    std::cin >> filas;
-    std::cout << "Ingrese el numero de columnas: \n";
-    std::cin >> columnas;
+    std::cout << "Enter the number of rows: \n";
+    std::cin >> rows;
+    std::cout << "Enter the number of columns: \n";
+    std::cin >> columns;
 
-    // Crear el array de dos dimensiones
-    int **matriz = new int *[filas];
-    for (int i = 0; i < filas; i++){
-        matriz[i] = new int [columnas];
+    // Create the two-dimensional array
+    int **matrix = new int *[rows];
+    for (int i = 0; i < rows; i++){
+        matrix[i] = new int [columns];
     }   
 
-    ingresarNumeros(matriz, filas, columnas);
+    enterNumbers(matrix, rows, columns);
     std::cout << "Literal A:  \n";
-    literalA(matriz, filas, columnas);
+    literalA(matrix, rows, columns);
     std::cout << "Literal B:  \n";
-    literalB(matriz, filas, columnas);
+    literalB(matrix, rows, columns);
     std::cout << "Literal C: \n";
-    literalC(matriz, filas, columnas);
+    literalC(matrix, rows, columns);
 
-    // Borrar la memoria utilizada para prevenir memory leaks
-    for (int i = 0; i < filas; i++){
-        delete[] matriz[i];
+    // Free the memory to prevent memory leaks
+    for (int i = 0; i < rows; i++){
+        delete[] matrix[i];
     } 
 
-    delete[] matriz;
+    delete[] matrix;
 }
 
-void ingresarNumeros(int **matriz, int filas, int columnas){
-    for (int i = 0; i < filas; i++){
-        for (int j = 0; j < columnas; j++){
-            std::cout << "Ingrese un numero en la fila # " << i + 1 << " y en la columna # " << j + 1 << '\n';
-            std::cin >> matriz[i][j];
+void enterNumbers(int **matrix, int rows, int columns){
+    for (int i = 0; i < rows; i++){
+        for (int j = 0; j < columns; j++){
+            std::cout << "Enter a number in row # " << i + 1 << " and in column # " << j + 1 << '\n';
+            std::cin >> matrix[i][j];
         }
     }
 }
 
-void literalA(int **matriz, int filas, int columnas){
-    for (int i = 0; i < filas; i++){
-        for (int j = columnas - 1; j >= 0; j--){
-            std::cout << matriz[i][j] << '\t';
+void literalA(int **matrix, int rows, int columns){
+    for (int i = 0; i < rows; i++){
+        for (int j = columns - 1; j >= 0; j--){
+            std::cout << matrix[i][j] << '\t';
         }
         std::cout << '\n';
     }
 }
 
-void literalB(int **matriz, int filas, int columnas){
-    for (int i = filas - 1; i >= 0; i--){
-        for (int j = 0; j < columnas; j++){
-            std::cout << matriz[i][j] << '\t';
+void literalB(int **matrix, int rows, int columns){
+    for (int i = rows - 1; i >= 0; i--){
+        for (int j = 0; j < columns; j++){
+            std::cout << matrix[i][j] << '\t';
         }
         std::cout << '\n';
     }
-
 }
 
-void literalC(int **matriz, int filas, int columnas){
-    int **matrizLiteralC = new int *[filas];
-    for (int i = 0; i < filas; i++){
-        matrizLiteralC[i] = new int [columnas];
+void literalC(int **matrix, int rows, int columns){
+    int **matrixLiteralC = new int *[columns];
+    for (int i = 0; i < columns; i++){
+        matrixLiteralC[i] = new int [rows];
     }
 
-    for (int i = 0; i < filas; i++){
-        for (int j = 0; j < columnas; j++){
-            matrizLiteralC[j][columnas - i - 1] = matriz[i][j];
+    for (int i = 0; i < rows; i++){
+        for (int j = 0; j < columns; j++){
+            matrixLiteralC[j][columns - i - 1] = matrix[i][j];
         }
     }
 
-    for (int i = 0; i < filas; i++){
-        for (int j = 0; j < columnas; j++){
-            std::cout << matrizLiteralC[i][j] << '\t';
+    for (int i = 0; i < rows; i++){
+        for (int j = 0; j < columns; j++){
+            std::cout << matrixLiteralC[i][j] << '\t';
         }
         std::cout << '\n';
     }
 
-    for (int i = 0; i < filas; i++){
-        delete[] matrizLiteralC[i];
+    for (int i = 0; i < columns; i++){
+        delete[] matrixLiteralC[i];
     } 
 
-    delete[] matrizLiteralC;
+    delete[] matrixLiteralC;
 }
