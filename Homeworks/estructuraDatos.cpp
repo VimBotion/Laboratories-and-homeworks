@@ -1,26 +1,30 @@
 #include <iostream>
-
+#include <string>
 
 struct Pelicula {
-  std::string titulo;
-  int anio;
-  std::string genero;
-  int duracion;
-  std::string clasificacion;
+    std::string titulo;
+    int anio;
+    std::string genero;
+    int duracion;
+    std::string clasificacion;
 };
 
 const int MAX_PELICULAS = 50;
 
-
-void agregarPelicula(Pelicula peliculas[MAX_PELICULAS], int &cantidadPeliculas);
+void agregarPelicula(Pelicula peliculas[MAX_PELICULAS], int& cantidadPeliculas);
 void mostrarPeliculas(Pelicula peliculas[MAX_PELICULAS], int cantidadPeliculas);
+void ordenarPeliculasPorAnio(Pelicula peliculas[MAX_PELICULAS], int cantidadPeliculas);
+void buscarPeliculaPorGenero(Pelicula peliculas[MAX_PELICULAS], int cantidadPeliculas);
+void modificarPelicula(Pelicula peliculas[MAX_PELICULAS], int cantidadPeliculas);
+void eliminarPelicula(Pelicula peliculas[MAX_PELICULAS], int& cantidadPeliculas);
 
-int main(){
-  int opcion;
-  int peliculas_count = 0;
-  Pelicula peliculas[MAX_PELICULAS];
-  
-      do {
+int main() {
+    int opcion;
+    int cantidadPeliculas = 0;
+
+    Pelicula peliculas[MAX_PELICULAS];
+
+    do {
         std::cout << "\t MENÚ \n";
         std::cout << "1. Agregar Película\n";
         std::cout << "2. Mostrar Películas\n";
@@ -96,3 +100,79 @@ void mostrarPeliculas(Pelicula peliculas[MAX_PELICULAS], int cantidadPeliculas) 
         std::cout << '\n';
     }
 }
+
+void ordenarPeliculasPorAnio(Pelicula peliculas[MAX_PELICULAS], int cantidadPeliculas) {
+    for (int i = 0; i < cantidadPeliculas - 1; i++) {
+        for (int j = 0; j < cantidadPeliculas - i - 1; j++) {
+            if (peliculas[j].anio > peliculas[j + 1].anio) {
+                Pelicula temp = peliculas[j];
+                peliculas[j] = peliculas[j + 1];
+                peliculas[j + 1] = temp;
+            }
+        }
+    }
+
+    for (int i = 0; i < cantidadPeliculas; i++) {
+        std::cout << "Película: " << peliculas[i].titulo << '\n';
+        std::cout << "Año de lanzamiento: " << peliculas[i].anio << '\n';
+        std::cout << '\n';
+    }
+}
+
+void buscarPeliculaPorGenero(Pelicula peliculas[MAX_PELICULAS], int cantidadPeliculas) {
+    std::cin.ignore();
+    std::string generoABuscar;
+    std::cout << "Géneros disponibles: \n";
+    for (int i = 0; i < cantidadPeliculas; i++) {
+        std::cout << "- " << peliculas[i].genero << '\n';
+    }
+    std::cout << "Ingrese el género que desea buscar: " << '\n';
+    getline(std::cin, generoABuscar);
+    for (int i = 0; i < cantidadPeliculas; i++) {
+        if (generoABuscar == peliculas[i].genero) {
+            std::cout << "Películas con género: " << peliculas[i].genero << "!\n";
+            std::cout << "Título: " << peliculas[i].titulo << '\n';
+            break;
+        }
+    }
+}
+
+void modificarPelicula(Pelicula peliculas[MAX_PELICULAS], int cantidadPeliculas) {
+    std::cin.ignore();
+    std::string tituloAModificar;
+    std::cout << "Ingrese el título de la película que desea modificar: \n";
+    std::getline(std::cin, tituloAModificar);
+
+    for (int i = 0; i < cantidadPeliculas; i++) {
+        if (tituloAModificar == peliculas[i].titulo) {
+            std::cout << "Ingrese nueva información para la película:\n";
+            agregarPelicula(peliculas, i);
+            std::cout << "Película modificada exitosamente!\n";
+            return;
+        }
+    }
+
+    std::cout << "Película no encontrada!\n";
+}
+
+void eliminarPelicula(Pelicula peliculas[MAX_PELICULAS], int& cantidadPeliculas) {
+    std::cin.ignore();
+    std::string tituloAEliminar;
+    std::cout << "Ingrese el título de la película que desea eliminar: \n";
+    std::getline(std::cin, tituloAEliminar);
+
+    for (int i = 0; i < cantidadPeliculas; i++) {
+        if (tituloAEliminar == peliculas[i].titulo) {
+            for (int j = i; j < cantidadPeliculas - 1; j++) {
+                peliculas[j] = peliculas[j + 1];
+            }
+
+            cantidadPeliculas--;
+            std::cout << "Película eliminada exitosamente!\n";
+            return;
+        }
+    }
+
+    std::cout << "Película no encontrada!\n";
+}
+
