@@ -29,9 +29,9 @@ struct Videojuego {
     float Calificacion;
 };
 
-void registrarPelicula(int& peliculasCount);
-void registrarCancion(int& cancionesCount);
-void registrarVideojuego(int& videojuegosCount);
+void registrarPelicula(int& multimediaCount);
+void registrarCancion(int& multimediaCount);
+void registrarVideojuego(int& multimediaCount);
 void mostrarInformacion();
 void ordenarMultimedia();
 void buscarElemento();
@@ -111,8 +111,8 @@ int main() {
     return 0;
 }
 
-void registrarPelicula(int &peliculasCount) {
-    std::ofstream archivo("peliculas.txt", std::ios::app);
+void registrarPelicula(int &multimediaCount) {
+    std::ofstream archivo("multimedia.txt", std::ios::app);
 
     if (!archivo) {
         std::cerr << "No se pudo abrir el archivo de Peliculas\n";
@@ -120,8 +120,9 @@ void registrarPelicula(int &peliculasCount) {
     }
 
     Pelicula nuevaPelicula;
-    nuevaPelicula.IdPelicula = peliculasCount;
+    nuevaPelicula.IdPelicula = multimediaCount;
     
+    std::cin.ignore();
     std::cout << "Ingrese el Titulo de la pelicula: \n";
     std::getline(std::cin, nuevaPelicula.Titulo);
 
@@ -138,18 +139,59 @@ void registrarPelicula(int &peliculasCount) {
     std::cin >> nuevaPelicula.Calificacion;
     std::cin.ignore();
 
-    peliculasCount++;
+    multimediaCount++;
 
     archivo << nuevaPelicula.IdPelicula << "," << nuevaPelicula.Titulo << "," << nuevaPelicula.Genero << "," << nuevaPelicula.Director << ","
             << nuevaPelicula.AnioLanzamiento << "," << nuevaPelicula.Calificacion << "\n";
+    std::cout << "Estudiante Ingresado con exito!\n";
 
     archivo.close();
 }
 
-void registrarCancion(int& cancionesCount) {
+void registrarCancion(int& multimediaCount) {
+    std::ofstream archivo("multimedia.txt", std::ios::app);
+
+    if (!archivo) {
+        std::cerr << "No se pudo abrir el archivo de Canciones\n";
+        return;
+    }
+
+    Cancion nuevaCancion;
+    nuevaCancion.IdCancion = multimediaCount;
+
+    std::cin.ignore();
+    std::cout << "Ingrese el Título de la canción: \n";
+    std::getline(std::cin, nuevaCancion.Titulo);
+
+    std::cout << "Ingrese el Artista de la Canción: \n";
+    std::getline(std::cin, nuevaCancion.Artista);
+
+    std::cout << "Ingrese el Género de la Canción: \n";
+    std::getline(std::cin, nuevaCancion.Genero);
+
+    std::cout << "Ingrese el año en que salió la Canción: \n";
+    std::cin >> nuevaCancion.AnioLanzamiento;
+
+    std::cout << "Ingrese la calificación de la Canción: \n";
+    std::cin >> nuevaCancion.Calificacion;
+    std::cin.ignore();
+
+    multimediaCount++;
+
+    archivo << nuevaCancion.IdCancion << "," << nuevaCancion.Titulo << "," << nuevaCancion.Artista << "," << nuevaCancion.Genero << ","
+            << nuevaCancion.AnioLanzamiento << "," << nuevaCancion.Calificacion << "\n";
+    std::cout << "Canción ingresada con éxito!\n";
+
+    archivo.close();
 }
 
+
 void registrarVideojuego(int& videojuegosCount) {
+    std::ofstream archivo("multimedia.txt", std::ios::app);
+
+    if (!archivo) {
+        std::cer
+    }
 }
 
 void mostrarInformacion() {
