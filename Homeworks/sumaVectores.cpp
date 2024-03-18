@@ -16,6 +16,8 @@ public:
     void calcularModulo() {
         modulo = std::sqrt(componenteX * componenteX + componenteY * componenteY);
     }
+    
+    Vector sum(Vector vector1)
 };
 
 Vector pedirComponentes(char vectorName){
