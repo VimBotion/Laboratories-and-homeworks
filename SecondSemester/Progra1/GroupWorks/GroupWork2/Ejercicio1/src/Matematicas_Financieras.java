@@ -1,6 +1,7 @@
 /**
- *
- * @author Campoverde Esteban
+ * 1. Obtener valores correspondientes a matemáticas financieras relacionadas con el interés=
+ *   compuesto
+ * @author Campoverde Esteban, Apolo Juan, Cabrera Franck
  */
 import java.util.Scanner;
 public class Matematicas_Financieras {
@@ -69,7 +70,11 @@ public class Matematicas_Financieras {
                     interes = real.nextDouble();
                     System.out.print("Ingrese la tasa de interes: ");
                     tasaInteres = real.nextDouble();
-                    periodoTiempo = 
+                    // Periodo de tiempo = log (Interes/Capital + 1) / log (1 + tasa interes)
+                    periodoTiempo = Math.log10(interes/capital + 1) / Math.log10(1 + tasaInteres);
+                    periodoTiempo = Math.round(periodoTiempo * 100.0) / 100.0;
+                    System.out.println("\nEl periodo de tiempo, con un capital de " + capital +
+                            " , un interes de " + interes + " y una tasa de interes de " + tasaInteres + " es igual a " + periodoTiempo);
                     break;
                 case 'e':
                     System.out.println("Gracias por utilizar!");
@@ -77,10 +82,6 @@ public class Matematicas_Financieras {
                 default:
                     System.out.println("Por favor seleccione una opcion correcta (a-e)");
             }
-        }while(opcion != 'e');
-        
-
-    
+        }while(opcion != 'e');       
     }
-    
 }
