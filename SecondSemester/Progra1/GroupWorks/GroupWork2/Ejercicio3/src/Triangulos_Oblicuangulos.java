@@ -54,12 +54,65 @@ public class Triangulos_Oblicuangulos {
                     System.out.printf("El valor del lado B es %.2f y el valor del lado C es %.2f.%n", ladoB, ladoC);   
                     break;
                 case 'b':
+                    System.out.print("Ingrese el valor del lado A: ");
+                    ladoA = real.nextDouble();
+                    System.out.print("Ingrese el valor del lado B: ");
+                    ladoB = real.nextDouble();
+                    System.out.print("Ingrese el valor del ángulo comprendido entre los lados A y B: ");
+                    anguloC = real.nextDouble();
+                    anguloCRad = Math.toRadians(anguloC);
+                    
+                    anguloA = Math.asin((ladoA * Math.sin(anguloC)) / ladoB);
+                    anguloA = Math.toDegrees(anguloA);
+                    anguloB = 180 - anguloC - anguloA;
+                    
+                    ladoC = Math.sqrt(Math.pow(ladoA, 2) + Math.pow(ladoB, 2) - 2 * ladoA * ladoB * Math.cos(anguloCRad));
+
+                    System.out.printf("El valor del ángulo A es de %.2f\n", anguloA);
+                    System.out.printf("El valor del ángulo B es de %.2f\n", anguloB);
+                    System.out.printf("El valor del lado C es de %.2f\n", ladoC);
                     break;
                 case 'c':
+                    System.out.print("Ingrese el valor del lado A: ");
+                    ladoA = real.nextDouble();
+                    System.out.print("Ingrese el valor del lado B: ");
+                    ladoB = real.nextDouble();
+                    System.out.print("Ingrese el valor del ángulo opuesto al lado A: ");
+                    anguloA = real.nextDouble();
+                    
+                    anguloA = Math.toRadians(anguloA);
+                    anguloC = Math.acos((Math.pow(ladoA, 2) + Math.pow(ladoB, 2) - (2 * ladoA * ladoB * Math.cos(anguloA))));
+                    anguloC = Math.toDegrees(anguloC);
+                    anguloB = 180 - Math.toDegrees(anguloA) - anguloC;
+
+                    ladoC = Math.sqrt(Math.pow(ladoA, 2) + Math.pow(ladoB, 2) - (2 * ladoA * ladoB * Math.cos(anguloA)));
+
+                    System.out.printf("El valor del ángulo B es de %.2f\n", anguloB);
+                    System.out.printf("El valor del ángulo C es de %.2f\n", anguloC);
+                    System.out.printf("El valor del lado C es de %.2f\n", ladoC);
                     break;
                 case 'd':
+                    System.out.print("Ingrese el valor del lado A: ");
+                    ladoA = real.nextDouble();
+                    System.out.print("Ingrese el valor del lado B: ");
+                    ladoB = real.nextDouble();
+                    System.out.print("Ingrese el valor del lado C: ");
+                    ladoC = real.nextDouble();
+
+                    anguloA = Math.acos((Math.pow(ladoB, 2) + Math.pow(ladoC, 2) - Math.pow(ladoA, 2)) /(2 * ladoB * ladoC));
+                    anguloA = Math.toDegrees(anguloA);
+
+                    anguloB = Math.acos((Math.pow(ladoA, 2) + Math.pow(ladoC, 2) - Math.pow(ladoB, 2)) / (2 * ladoA * ladoC));
+                    anguloB = Math.toDegrees(anguloB);
+
+                    anguloC = 180 - anguloA - anguloB;
+
+                    System.out.printf("El valor del ángulo A es de %.2f\n", anguloA);
+                    System.out.printf("El valor del ángulo B es de %.2f\n", anguloB);
+                    System.out.printf("El valor del ángulo C es de %.2f\n", anguloC);
                     break;
                 case 'e':
+                    System.out.println("Gracias por utilizar!");
                     break;
                 default:
                     System.out.println("Por favor ingrese una opcion valida (a-e)");
