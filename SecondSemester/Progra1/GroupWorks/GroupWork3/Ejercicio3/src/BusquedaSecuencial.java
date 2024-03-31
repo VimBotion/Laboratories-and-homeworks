@@ -54,7 +54,7 @@ public class BusquedaSecuencial {
 		
 			System.out.print("Ingrese el valor a buscar: ");
 			valorBuscar = real.nextDouble();
-			// Comprueba si existe el valor a buscar en el vector
+			// Comprueba si la busqueda devuelve un indice de posicion
 			if(busquedalineal(vector, valorBuscar) != -1){
 				System.out.println("El " + valorBuscar + " se encuentra en la posicion " + busquedalineal(vector, valorBuscar));
 			}
@@ -64,6 +64,7 @@ public class BusquedaSecuencial {
 			do {
 				System.out.print("Desea repetir el programa? (s/n): ");
 				opcion = caracter.next().charAt(0);
+				// Convierte opcion a minusculas
 				opcion = Character.toLowerCase(opcion);
 			} while(opcion != 's' && opcion != 'n');
 		} while(opcion == 's');
