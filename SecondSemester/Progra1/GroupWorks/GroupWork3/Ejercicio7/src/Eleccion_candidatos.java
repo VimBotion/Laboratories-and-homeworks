@@ -40,11 +40,71 @@ public class Eleccion_candidatos {
 			System.out.println(votos[i] + "");
 		}
 	}
+
+	public static void sumarVotos(int votos[], int contador[], int elementos_ingresados){
+		int posicion;
+
+		for(int i = 0; i < contador.length; i++){
+			contador[i] = 0;
+		}
+
+		for(int j = 0; j < elementos_ingresados; j++){
+			// Las posiciones se asignan segun el voto desde 1 - 4, el index 0 no es tomado en cuenta
+			posicion = votos[j];
+			contador[posicion]++;
+		}
+	}
+	
+	public static double calcularPorcentaje(int votosCandidato, int elementos_ingresados){
+		return (votosCandidato / (double) elementos_ingresados) * 100.0;
+	}	
+
+	public static void determinarGanador(int contador[], int elementos_ingresados){
+		// Uno es la posicion del primer candidato
+		int posibleGanador = contador[1];
+		int indicePosibleGanador = 1;
+		boolean empate = false;
+		// i = 2 para comparar desde el segundo candidato
+		for(int i = 2; i < contador.length; i++){
+			if(contador[i] > posibleGanador){
+				posibleGanador = contador[i];
+				indicePosibleGanador = i;
+			}
+			else if(contador[i] == posibleGanador){
+				empate = true;
+			}
+		}
+		if(!empate){
+			double porcentaje = calcularPorcentaje(contador[indicePosibleGanador], elementos_ingresados);
+			System.out.printf("El candidato %d con %d votos correspondientes al %.2f%% es el ganador %n", indicePosibleGanador, contador[indicePosibleGanador], porcentaje);
+		}else{
+			for(int i = 1; i < contador.length; i++){
+				if(contador[i] == posibleGanador && i != indicePosibleGanador){
+					double porcentaje = calcularPorcentaje(contador[i], elementos_ingresados);
+					System.out.printf("Los candidatos %d y %d empatan con %d votos correspondiente al %.2f%% %n", i, indicePosibleGanador, contador[i], porcentaje);
+					break;
+				}
+			}	
+		}
+	}
+
+	public static void mostrarResultados(int contador[], int elementos_ingresados){
+		System.out.println("\t\nResultados");
+		System.out.println("Total de votantes: " + elementos_ingresados);
+		System.out.printf("%10s %10s %15s %n", "Candidato", "Votos", "Porcentaje");
+		for(int i = 1; i < contador.length; i++){
+			double porcentaje = calcularPorcentaje(contador[i], elementos_ingresados);
+			System.out.printf("%10d %10d %15.2f%% %n", i, contador[i], porcentaje);
+		}
+
+		determinarGanador(contador, elementos_ingresados);
+	}
+	
     public static void main(String[] args) {
 		Scanner caracter = new Scanner(System.in);
 		char opcion;
 		int votos[] = new int[100];
-		int contador[] = new int[4];
+		int contador[] = new int[5];
 		int elementosIngresados = 0;	
 		do {
 			
@@ -64,8 +124,11 @@ public class Eleccion_candidatos {
 					listar(votos, elementosIngresados);
 					break;
 				case '3':
+					sumarVotos(votos, contador, elementosIngresados);
+					mostrarResultados(contador, elementosIngresados);
 					break;
 				case '4':
+					System.out.println("Fin del programa");
 					break;
 				default:
 					System.out.println("Opcion invalida");
