@@ -14,6 +14,7 @@ public class MCD_y_Palindromo {
 	}
 	public static boolean esPalindromo(long numero){
 		long numeroInvertido = 0;
+		// Copia del numero antes de ser dividido para 10
 		long numeroOriginal = numero;
 		while(numero != 0){
 			long residuo = numero % 10;
@@ -32,7 +33,7 @@ public class MCD_y_Palindromo {
 			System.out.println("Menu:");	
 			System.out.println("1. Maximo comun divisor");
 			System.out.println("2. Numero Palindromo");
-			System.out.println("3. Palindromo");
+			System.out.println("3. Salir");
 			System.out.print("Elija una opcion (1-3): ");
 			opcion = caracter.next().charAt(0);
 
