@@ -79,6 +79,7 @@ public class Eleccion_candidatos {
 			System.out.printf("El candidato %d con %d votos correspondientes al %.2f%% es el ganador %n", indicePosibleGanador, contador[indicePosibleGanador], porcentaje);
 		}else{
 			for(int i = 1; i < contador.length; i++){
+				// Verificar que el indice de ambos ganadores sea diferente, evita que se imprima un empate entre el mismo ganador
 				if(contador[i] == posibleGanador && i != indicePosibleGanador){
 					double porcentaje = calcularPorcentaje(contador[i], elementos_ingresados);
 					System.out.printf("Los candidatos %d y %d empatan con %d votos correspondiente al %.2f%% %n", i, indicePosibleGanador, contador[i], porcentaje);
