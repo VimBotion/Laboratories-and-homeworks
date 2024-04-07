@@ -1,5 +1,5 @@
 /**
- *
+ * 1. Ingresar datos en una matriz de reales de tamaño nxm y realizar operaciones sobre ellos
  * @author Campoverde Esteban, Apolo Juan, Cabrera Franck
  */
 import java.util.Scanner;
@@ -54,7 +54,7 @@ public class Operaciones_Matrices {
 	}
 
 	public static void mostrarPorcentajes(double matriz[][]){
-		System.out.println("\tPorcentajes");
+		System.out.println("\t\nPorcentajes");
 		// Porcentaje numeros positivos
 		int positivos = calcularCantidadPositivos(matriz);
 		double porcentajePositivos = calcularPorcentaje(matriz, positivos);
@@ -66,7 +66,7 @@ public class Operaciones_Matrices {
 	}
 
 	public static void promedioFilas(double matriz[][]){
-		System.out.println("\tPromedio de filas");
+		System.out.println("\t\nPromedio de filas");
 		for(int filas = 0; filas < matriz.length; filas++){
 			int suma = 0;
 			for(int columnas = 0; columnas < matriz[filas].length; columnas++){
@@ -78,7 +78,7 @@ public class Operaciones_Matrices {
 	}
 
 	public static void promedioColumnas(double matriz[][]) {
-		System.out.println("\tPromedio de columnas");
+		System.out.println("\t\nPromedio de columnas");
     	for (int columnas = 0; columnas < matriz[0].length; columnas++) {
         	double suma = 0;
         	for (int filas = 0; filas < matriz.length; filas++) {
@@ -99,7 +99,7 @@ public class Operaciones_Matrices {
 		// Posiciones del primer mayor
 		filasMayores[0] = 0;
 		columnasMayores[0] = 0;
-		System.out.println("\tNumero mayor y su posicion");
+		System.out.println("\t\nNumero/s mayor/es y su/s posicion/es");
 		for(int filas = 0; filas < matriz.length; filas++){
 			for(int columnas = 1; columnas < matriz[filas].length; columnas++){
 				if(matriz[filas][columnas] > mayor){
@@ -135,7 +135,7 @@ public class Operaciones_Matrices {
 		// Posiciones del primer menor
 		filasMenores[0] = 0;
 		columnasMenores[0] = 0;
-		System.out.println("\tNumero menor y su posicion");
+		System.out.println("\t\nNumero/s menor/es y su/s posicion/es");
 		for(int filas = 0; filas < matriz.length; filas++){
 			for(int columnas = 1; columnas < matriz[filas].length; columnas++){
 				if(matriz[filas][columnas] < menor){

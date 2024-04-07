@@ -1,37 +1,47 @@
 /**
- *
+ * 4. Escribir un programa que permita utilizando una matriz, crear e imprimir el triángulo de Pascal
  * @author Campoverde Esteban, Apolo Juan, Cabrera Franck
  */
 import java.util.Scanner;
 public class Triangulo_Pascal {
-	public static void inicializarMatriz(int matriz[][]){
-		for(int i = 0; i < matriz.length; i++){
-			for(int j = 0; j < matriz[0].length; j++){
-				matriz[i][j] = 1;
-			}
-		}
-	}
-			
 	public static void dibujarTriangulo(int matriz[][]){
-		inicializarMatriz(matriz);
-		for(int i = 0; i < matriz.length; i++){
-			for(int j = 0; j < i + 1; j++){
-				if (i > 2 && j > 2){
-					matriz[i][j] = matriz[i - 1][j - 1] + matriz[i-1][j];
+		int tamano = matriz.length;
+		for(int i = 0; i < tamano; i++){
+			// Imprime los espacios en blanco en cada linea
+			for(int k = 0; k < tamano - i - 1; k++){
+				System.out.print(" ");
+			}
+
+			for(int j = 0; j <= i; j++){
+				// El valor de la primera y ultima columna se convierte en 1
+				if(j == 0 || j == i){
+					matriz[i][j] = 1;
 				}
-				System.out.print(matriz[i][j] + " ");
+				else{
+					matriz[i][j] = matriz[i - 1][j - 1] + matriz[i - 1][j];
+				}
+				System.out.print(matriz[i][j] +" ");
 			}
 			System.out.println("");
 		}
 	}
     public static void main(String[] args) {
 		Scanner entero = new Scanner(System.in);
+		Scanner caracter = new Scanner(System.in);
 		int lineas;
-		do{
-			System.out.print("Ingrese el numero de lineas del triangulo de Pascal: ");
-			lineas = entero.nextInt();
-		}while(lineas <= 0);
-		int matriz[][] = new int[lineas][lineas];
-		dibujarTriangulo(matriz);
+		char opcion;
+		do {
+			do{
+				System.out.print("Ingrese el numero de lineas del triangulo de Pascal: ");
+				lineas = entero.nextInt();
+			}while(lineas <= 0);
+			int matriz[][] = new int[lineas][lineas];
+			dibujarTriangulo(matriz);
+			do{
+				System.out.print("Desea repetir el programa? s/n: ");
+				opcion = caracter.next().charAt(0);
+				opcion = Character.toLowerCase(opcion);
+			}while(opcion != 's' && opcion != 'n');	
+		} while(opcion == 's');
     }
 }
