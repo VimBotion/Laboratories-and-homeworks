@@ -1,54 +1,47 @@
 #include <iostream>
-#include <stdlib.h>
-using namespace std;
 
-struct nodo {
-   int dato;
-   nodo *siguiente;
+struct Nodo {
+    int data;
+    Nodo* next;
 };
 
-nodo *cabecera;
-
-void InsertarFinal(int valor) {
-   nodo *nuevo;
-   nuevo=(nodo *)malloc(sizeof(nodo));
-   nuevo->dato=valor;
-   nuevo->siguiente=NULL;
-
-   nodo *ultimo;
-   ultimo = cabecera;
-   
-   if (cabecera == NULL)
-   {
-    cabecera=nuevo;
-   }
-   else
-   {
-    while (ultimo->siguiente!=NULL)
-    {
-     ultimo=ultimo->siguiente;  
-    }  
-    ultimo->siguiente = nuevo;
-   }
+Nodo* crearNodo(int value) {
+    Nodo* nuevoNodo = new Nodo;
+    nuevoNodo->data = value;
+    nuevoNodo->next = nullptr;
+    return nuevoNodo;
 }
 
-void Mostrar(){
-  nodo *actual;
-  actual=cabecera;
-  
-  while (actual!=NULL)
-  {
-  	cout << actual->dato << endl;
-  	actual=actual->siguiente;
-  } 	
+Nodo* insertarInicio(Nodo* head, int value) {
+    Nodo* nuevoNodo = crearNodo(value);
+    nuevoNodo->next = head;
+    return nuevoNodo;
+}
+
+void printList(Nodo* head) {
+    Nodo* current = head;
+    while (current != nullptr) {
+        std::cout << current->data << " ";
+        current = current->next;
+    }
+    std::cout << std::endl;
 }
 
 int main() {
-   cabecera=NULL;
-   InsertarFinal(5);
-   InsertarFinal(9);
-   InsertarFinal(12);
-   Mostrar();
-   
-   return 0;
+    Nodo* head = nullptr;
+
+    head = insertarInicio(head, 10);
+    head = insertarInicio(head, 2);
+    head = insertarInicio(head, 4);
+
+    std::cout << "Linked list despues de insertar: ";
+    printList(head);
+
+    while (head != nullptr) {
+        Nodo* temp = head;
+        head = head->next;
+        delete temp;
+    }
+
+    return 0;
 }
