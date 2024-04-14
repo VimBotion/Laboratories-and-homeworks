@@ -7,7 +7,7 @@ pygame.init()
 # Definir colores
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
-RED = (255, 0, 0)
+ORANGE = (255, 150, 10)
 
 # Definir el tamaño de la pantalla
 WIDTH, HEIGHT = 800, 600
@@ -78,9 +78,9 @@ def main():
 
         # Mostrar los puntos de inicio y final si están definidos
         if start_pos is not None:
-            pygame.draw.circle(screen, RED, start_pos, 5)
+            pygame.draw.circle(screen, ORANGE, start_pos, 5)
         if end_pos is not None:
-            pygame.draw.circle(screen, RED, end_pos, 5)
+            pygame.draw.circle(screen, ORANGE, end_pos, 5)
 
         # Mostrar información en la pantalla después de que se han establecido dos puntos
         if start_pos is not None and end_pos is not None:
