@@ -59,16 +59,15 @@ public class numeroVeces_Intercalar_Anagrama {
 		for(int i = 0; i < cadena2.length(); i++){
 			contador[cadena2.charAt(i) - 'a']--;
 		}
-
+		
+		// Si todos los elementos en contador son 0 significa que es un anagrama
 		for(int cont : contador){
 			if(cont != 0){
 				return false;
 			}
 		}
-
 		return true;
 	}
-
 
     public static void main(String[] args) {
 		Scanner caracter = new Scanner(System.in);
