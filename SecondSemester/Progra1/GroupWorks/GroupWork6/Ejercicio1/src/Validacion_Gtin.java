@@ -25,6 +25,8 @@ public class Validacion_Gtin {
 		int verificador = 0;
 		if(residuo != 0){
 			verificador = 10 - residuo;
+		} else if (residuo == 0){
+			verificador = 0;
 		}
 		return verificador == digitoVerificador;
 	}

@@ -5,7 +5,7 @@
 import java.util.Scanner;
 public class Telefono_Placa_DireccionIPV6 {
 	public static boolean validarTelefono(String cadena){
-		// Formato del telefono fijo: Codigo de area  numero de telefono, 04 XXX-XXXX
+		// Formato del telefono fijo: Codigo de area  numero de telefono, 0(numero de 2 al 7) XXX-XXXX
 		return cadena.matches("0[2-7]\\s\\d{4}-\\d{3}");
 	}
 
@@ -67,7 +67,7 @@ public class Telefono_Placa_DireccionIPV6 {
 				repetir = caracter.next().charAt(0);
 				repetir = Character.toLowerCase(repetir);
 				if(repetir != 's' && repetir != 'n'){
-					System.out.println("Escoga s o n");
+					System.out.println("Escoja s o n");
 				}
 			}while(repetir != 's' && repetir != 'n');
 		}while(repetir == 's');
