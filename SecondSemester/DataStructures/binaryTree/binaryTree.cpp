@@ -1,45 +1,53 @@
 #include <iostream>
 
 struct Nodo {
-    int dato;
-    Nodo* izquierda;
-    Nodo* right;
+  int dato;
+  Nodo *izquierda;
+  Nodo *derecha;
 };
 
-Nodo* crearNodo(int valor) {
-    Nodo* newNode = new Nodo;
-    newNode->dato = valor;
-    newNode->izquierda = nullptr;
-    newNode->right = nullptr;
-    return newNode;
+Nodo *crearNodo(int valor) {
+  Nodo *newNode = new Nodo;
+  newNode->dato = valor;
+  newNode->izquierda = nullptr;
+  newNode->derecha = nullptr;
+  return newNode;
 }
 
-Nodo* insertarNodo(Nodo* root, int valor) {
-    if (root == nullptr) {
-        return crearNodo(valor);
-    }
+void insertar(Nodo *cabeza, int valor) {
+  if (cabeza == nullptr) {
+    crearNodo(valor);
+  }
 
-    if (valor < root->dato) {
-        root->izquierda = insertarNodo(root->izquierda, valor);
-    } else if (valor > root->dato) {
-        root->right = insertarNodo(root->right, valor);
-    }
+  if (valor < cabeza->dato) {
+    insertar(cabeza->izquierda, valor);
+  }
 
-    return root;
+  if (valor > cabeza->dato) {
+    insertar(cabeza->derecha, valor);
+  }
+}
+
+void inOrden(Nodo *cabeza) {
+  if (cabeza == nullptr) {
+    std::cout << cabeza->dato << '\n';
+  }
+
+  inOrden(cabeza->izquierda);
+  inOrden(cabeza->derecha);
 }
 
 int main() {
-    Nodo* root = nullptr;
+  Nodo *root = nullptr;
+  insertar(root, 5);
+  insertar(root, 8);
+  insertar(root, 1);
+  insertar(root, 10);
+  insertar(root, 4);
+  insertar(root, 51);
 
-    root = insertarNodo(root, 5);
-    insertarNodo(root, 3);
-    insertarNodo(root, 7);
-    insertarNodo(root, 1);
-    insertarNodo(root, 4);
-    insertarNodo(root, 6);
-    insertarNodo(root, 8);
+  // inOrden(root);
+  delete root;
 
-    delete root;
-
-    return 0;
+  return 0;
 }
