@@ -11,7 +11,7 @@ public class Validar_Cadena {
 		return texto.matches("\\d{3,9}[1-9]");
 	}
 	public static boolean validarEnteroReal(String texto){
-		return texto.matches("[+-]?\\d+(\\.\\d)?");
+		return texto.matches("[+-]?\\d+(\\.\\d+)?");
 	}
     public static void main(String[] args) {
 		Scanner caracter = new Scanner(System.in);
