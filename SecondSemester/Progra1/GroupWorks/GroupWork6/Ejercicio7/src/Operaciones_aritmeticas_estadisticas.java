@@ -12,6 +12,7 @@ public class Operaciones_aritmeticas_estadisticas {
 		int[] arregloEnteros = new int[arregloCadena.length];
 		
 		for(int i = 0; i < arregloCadena.length; i++){
+			// Convierte un numero de tipo String a entero
 			arregloEnteros[i] = Integer.parseInt(arregloCadena[i]);
 		}
 		return arregloEnteros;
@@ -34,6 +35,7 @@ public class Operaciones_aritmeticas_estadisticas {
 	}
 
 	public static double desviacionEstandarPoblacional(int[] arreglo){
+		// Desviacion Estandar = RaizCuadrada((cadaElemento - media)^2 / numeroELementos)
 		double desviacion = 0;
 		double media = mediaAritmetica(arreglo);
 		for(int item : arreglo){
@@ -44,6 +46,7 @@ public class Operaciones_aritmeticas_estadisticas {
 	}
 	
 	public static double varianzaPoblacional(int[] arreglo){
+		// Varianza Poblacional = (cadaElemento - media)^2 / numeroELementos
 		double varianza = 0;
 		double media = mediaAritmetica(arreglo);
 		for(int item : arreglo){
@@ -104,7 +107,9 @@ public class Operaciones_aritmeticas_estadisticas {
     public static void mostrarModa(int[] arreglo) {
         int[] modas = moda(arreglo);
         System.out.printf("%-30s", "Moda");
-        if (modas.length == 1) {
+        if (modas.length == 0) {
+            System.out.println("No hay moda.");
+        } else if (modas.length == 1) {
             int frecuencia = contarOcurrencias(arreglo, modas[0]);
             System.out.printf("%d con %d ocurrencias.%n", modas[0], frecuencia);
         } else {
@@ -128,7 +133,7 @@ public class Operaciones_aritmeticas_estadisticas {
                     frecuencia++;
                 }
             }
-            if (frecuencia == maxFrecuencia) {
+            if (frecuencia == maxFrecuencia && frecuencia > 1 ) {
                 cantidadModas++;
             } else if (frecuencia > maxFrecuencia) {
                 maxFrecuencia = frecuencia;
@@ -145,7 +150,7 @@ public class Operaciones_aritmeticas_estadisticas {
                     frecuencia++;
                 }
             }
-            if (frecuencia == maxFrecuencia && !contains(modas, arreglo[i])) {
+            if (frecuencia == maxFrecuencia && !contains(modas, arreglo[i]) && frecuencia > 1) {
                 modas[index++] = arreglo[i];
             }
         }
@@ -183,7 +188,6 @@ public class Operaciones_aritmeticas_estadisticas {
 		System.out.printf("%-30s %d %n", "Mayor", mayor(arreglo));
 		System.out.printf("%-30s %d %n", "Menor", menor(arreglo));
 	}
-
 
 	public static void main(String[] args){
 		Scanner cadena = new Scanner(System.in);

@@ -61,7 +61,7 @@ public class Validar_Cadena {
 				repetir = caracter.next().charAt(0);
 				repetir = Character.toLowerCase(repetir);
 				if(repetir != 's' && repetir != 'n'){
-					System.out.println("Escoga s o n");
+					System.out.println("Escoja s o n");
 				}
 			}while(repetir != 's' && repetir != 'n');
 		}while(repetir == 's');
