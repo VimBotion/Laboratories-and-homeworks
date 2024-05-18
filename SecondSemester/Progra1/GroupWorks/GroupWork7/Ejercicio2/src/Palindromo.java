@@ -30,7 +30,7 @@ public class Palindromo {
 	public static String formatearTexto(String texto){
 		texto = removerTildes(texto);
 		// Remueve signos de puntuacion, espacios en blanco y convierte a minusculas
-		texto = texto.replaceAll("[^A-Za-z]", "").toLowerCase();
+		texto = texto.replaceAll("[^A-Za-z0-9]", "").toLowerCase();
 
 		return texto;
 	}
@@ -50,7 +50,7 @@ public class Palindromo {
 				System.out.print("Cadena: ");
 				texto = cadena.nextLine();
 				if(validarIngreso(texto)){
-					System.out.println("Ingrese al menos una palabra o numero, de dos o mas caracteres");
+					System.out.println("Ingrese al menos una palabra, de dos o mas caracteres");
 				}
 			}while(validarIngreso(texto));
 
