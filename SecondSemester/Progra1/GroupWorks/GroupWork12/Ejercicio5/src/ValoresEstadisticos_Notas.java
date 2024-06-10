@@ -39,7 +39,6 @@ public class ValoresEstadisticos_Notas extends JFrame {
 	JTable tablaEstadisticas = new JTable(modeloEstadisticas);
 	JScrollPane scrollTablaNotas, scrollTablaEstadisticas;
 
-
 	ValoresEstadisticos_Notas(){
 		
 		// Ingreso de la cantidad de notas a registrar
